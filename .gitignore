@@ -1,6 +1,12 @@
 ## Unity
 Library/
 
+# MonoDevelop (?) Doubtful need to share these
+*.sln
+*.userprefs
+*.usertasks
+*.csproj
+
 #################
 ## Visual Studio
 #################
