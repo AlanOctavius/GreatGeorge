@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour, IShootable {
+public class Enemy : Character {
 
 	void Start() {
-		
+		health = 10;
 	}
 
 	void Update() {
 		
 	}
 
-	public void TakeDamage (int damage)
-	{
-		print("Took "+ damage + " damage");
+	protected override void Die() {
+		Destroy(gameObject);
 	}
 }

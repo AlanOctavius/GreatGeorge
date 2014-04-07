@@ -4,11 +4,13 @@ using System.Collections;
 //I copy / pasted the majority of this from the unity 2D example project. I didn't see the need to change what already works.
 
 public class PlayerMovement : MonoBehaviour {
-
-	[HideInInspector]
-	public bool facingRight = true;			// For determining which way the player is currently facing.
-	[HideInInspector]
-	public bool jump = false;				// Condition for whether the player should jump.
+	//made this a property so can make readonly
+	private bool facingRight = true;		// For determining which way the player is currently facing.
+	public bool FacingRight {
+		get { return facingRight; } }
+	//[HideInInspector]
+	//why was this public?
+	private bool jump = false;				// Condition for whether the player should jump.
 	
 	 
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.

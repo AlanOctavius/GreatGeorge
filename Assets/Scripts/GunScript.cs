@@ -23,7 +23,7 @@ public class GunScript : MonoBehaviour {
 		if (!shootAtCursor) {
 			if(Input.GetButtonDown("Fire1")) {
 				// If the player is facing right...
-				if(playerMoveScript.facingRight) {
+				if(playerMoveScript.FacingRight) {
 					// ... instantiate the rocket facing right and set it's velocity to the right. 
 					bulletRotation = Quaternion.Euler(Vector3.zero);
 					bulletVelocity = new Vector2(speed, 0);
@@ -46,7 +46,7 @@ public class GunScript : MonoBehaviour {
 			//I had to look this bit up. I could not find a method that did this math for me; Vector3.Angle returns between 0 and 180
 			float angle = Mathf.Atan2(resultY, resultX) * Mathf.Rad2Deg;
 			//the whole player (gun is a child thus flips too) transform flips when moving left, so this angle needs to flip to match the gun's change
-			if (!playerMoveScript.facingRight) {
+			if (!playerMoveScript.FacingRight) {
 				angle *= -1;
 			}
 			//manually set rotation so that the gun is rotated to point at cursor position
