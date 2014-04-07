@@ -7,10 +7,6 @@ public class Enemy : Character {
 		health = 10;
 	}
 
-	void Update() {
-		
-	}
-
 	protected override void Die() {
 		Destroy(gameObject);
 	}

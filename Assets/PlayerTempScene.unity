@@ -418,6 +418,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1686077753}
   - 114: {fileID: 1686077754}
+  - 114: {fileID: 1686077755}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -447,6 +448,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7165282afb0cd4744a47946eaf12949c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1686077755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1686077752}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e298b79844a1d24fbb8a5746b3448dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuSizePercent: 80
+  buttonWidth: 200
+  buttonHeight: 75
+  buttonSpacing: 20
 --- !u!1 &1899235810
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class GunScript : MonoBehaviour {
 
 	void Update() {
 		if (!shootAtCursor) {
-			if(Input.GetButtonDown("Fire1")) {
+			if (Input.GetButtonDown("Fire1") && !GameManagerScript.Paused) { //better way of checking pause?
 				// If the player is facing right...
 				if(playerMoveScript.FacingRight) {
 					// ... instantiate the rocket facing right and set it's velocity to the right. 
