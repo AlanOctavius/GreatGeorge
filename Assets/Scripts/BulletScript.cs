@@ -9,5 +9,18 @@ public class BulletScript : MonoBehaviour {
 		Destroy(gameObject, 2);
 	}
 
-	//TODO fill in mechanics of hitting enemies
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.tag == "Enemy") {
+			//e.g.:
+			//EnemyScript es = col.gameObject.GetComponent<EnemyScript>()
+			//es.TakeDamage(1);
+		}
+		//I'd rather not do it this way. Using non-generic GetComponent can be costly, I believe. And seems a bit roundabout when can just check tag and use a known script name.
+		else {
+			IShootable script = col.gameObject.GetComponent(typeof(IShootable)) as IShootable;
+			if (script != null) {
+				script.TakeDamage(1);
+			}
+		}
+	}
 }
