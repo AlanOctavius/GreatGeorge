@@ -4,20 +4,19 @@ using System.Collections;
 public abstract class Character : MonoBehaviour, IDamageable {
 
 	/// <summary>
-	/// The health to be set to a default value by an inheriting class
+	/// The health needs to be set to a default value by an inheriting class, probably in its Start method
 	/// </summary>
 	protected int health;
-	//Not sure if we need public-read access to health. maybe if we have health bars over the enemies? But here is a read-only property if we do.
+	//Not sure if we need public read access to health. maybe if we have health bars over the enemies? But here is a read-only property if we do.
 	/// <summary>
-	/// Gets the health.
+	/// The current health of the <see cref="Character"/>
 	/// </summary>
 	/// <value>The health.</value>
 	public int Health {
 		get { return health; } }
 
-	//maybe this will need to be overridden if something has armor or a shield or something, so it's virtual
 	/// <summary>
-	/// If the Character doesn't take the raw amount of damage, such as if it has armor, you need to override this method.
+	/// If the <see cref="Character"/>doesn't take the raw amount of <paramref name="damage"/>, such as if it has armor, you need to override this method.
 	/// </summary>
 	/// <param name="damage">Damage to remove from health</param>
 	public virtual void TakeDamage (int damage)	{
@@ -35,7 +34,7 @@ public abstract class Character : MonoBehaviour, IDamageable {
 	 If different enemies give different points, having this stay abstract is probably best
 	 */
 	/// <summary>
-	/// Called when Character's Health reaches 0. Should increment score w/ Game Manager and call Destroy on self
+	/// Called when Character's <see cref="Health"/>reaches 0. Enemies should increment score w/ <see cref="GameManagerScript"/>and call Destroy on self
 	/// </summary>
 	/// <example>
 	/// <c>

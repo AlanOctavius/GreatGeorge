@@ -1,8 +1,8 @@
 <ListOfTask>
-  <Task file="" description="End State - end state - ?time limit, take too much damage, fall out of level, ?enemies meet goal / TD goal destroyed" priority="High" />
-  <Task file="" description="Interfaces - use typeof or is? other things for enemies besides TakeDamage" priority="High" />
+  <Task file="" description="End State - end state - ?time limit, take too much damage, fall out of level, ?enemies meet goal / TD goal destroyed" priority="High" completed="True" />
+  <Task file="" description="Interfaces - use typeof or is? other things for enemies besides TakeDamage" priority="High" completed="True" />
   <Task file="" description="Pickups / buffs" />
   <Task file="" description="Player stats - health" completed="True" />
   <Task file="" description="Different guns" />
-  <Task file="" description="bullets not harm character firing them" />
+  <Task file="" description="bullets not harm character firing them" completed="True" />
 </ListOfTask>

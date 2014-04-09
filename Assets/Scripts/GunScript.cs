@@ -3,9 +3,14 @@ using System.Collections;
 
 public class GunScript : MonoBehaviour {
 
-	public Rigidbody2D bullet;  //assigned in inspector
-	public float speed = 20f;   // The speed the rocket will fire at.
-	public bool shootAtCursor = false;
+	[SerializeField]
+	private Rigidbody2D bullet;  //assigned in inspector
+
+	//DEBUG serialized both for testing
+	[SerializeField]
+	private float speed = 20f;   // The speed the bullet will fire at.
+	[SerializeField]
+	private bool shootAtCursor = false;
 
 	private PlayerMovement playerMoveScript;
 
