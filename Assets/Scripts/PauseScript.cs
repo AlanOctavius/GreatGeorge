@@ -11,7 +11,7 @@ public class PauseScript : MonoBehaviour {
 		Pause, 
 		/// <summary>The player died</summary>
 		PlayerDie,
-		/// <summary>Player has reached their point goal for the level</summary>
+		/// <summary>Player has reached his point goal for the level</summary>
 		PointGoal,
 		/// <summary>Enemies reached their goal (Tower Defense)</summary>
 		EnemyWin,

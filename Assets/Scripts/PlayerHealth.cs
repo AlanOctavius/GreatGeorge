@@ -4,12 +4,12 @@ using System.Collections;
 public class PlayerHealth : Character {
 
 	/// <summary>
-	/// Occurs when player dies from falling or health reaches 0.
+	/// Occurs when player dies from falling off level or health reaches 0.
 	/// </summary>
 	public static event System.Action playerDeath;
 
 	void Start() {
-		health = 10;
+		health = 10; //health in Character
 	}
 
 	protected override void Die() {
@@ -19,7 +19,7 @@ public class PlayerHealth : Character {
 	}
 
 	/// <summary>
-	/// Should call when player falls to his death.
+	/// Should call when player falls out of level to his death.
 	/// </summary>
 	public void PlayerFell() {
 		Die();

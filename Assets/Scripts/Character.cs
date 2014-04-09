@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class Character : MonoBehaviour, IDamageable {
 
 	/// <summary>
-	/// The health needs to be set to a default value by an inheriting class, probably in its Start method
+	/// The health of the Character. It needs to be set to a default value by an inheriting class, probably in its Start method. Public read access though <see cref="Health"/>property.
 	/// </summary>
 	protected int health;
 	//Not sure if we need public read access to health. maybe if we have health bars over the enemies? But here is a read-only property if we do.

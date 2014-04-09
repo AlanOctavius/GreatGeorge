@@ -5,6 +5,9 @@ public class GunScript : MonoBehaviour {
 
 	[SerializeField]
 	private Rigidbody2D bullet;  //assigned in inspector
+	public int bulletDamage = 1; //made public in case we use pickups that may want to alter this
+	private BulletScript bs; //so not creating a new var every shot
+	Rigidbody2D bulletInstance; //so not creating a new var every shot
 
 	//DEBUG serialized both for testing
 	[SerializeField]
@@ -12,7 +15,7 @@ public class GunScript : MonoBehaviour {
 	[SerializeField]
 	private bool shootAtCursor = false;
 
-	private PlayerMovement playerMoveScript;
+	private PlayerMovement playerMoveScript; //init in Start
 
 	private Quaternion bulletRotation; //bullet is round so its rotation doesn't matter. but if that changes, we do have to change its orientation as it's done below
 	private Vector2 bulletVelocity;
@@ -20,37 +23,44 @@ public class GunScript : MonoBehaviour {
 	private Vector3 cursorPos;
 	private Vector3 cursorInWorld;
 
+	void Awake() {
+		this.enabled = false;
+	}
+
 	void Start() {
 		playerMoveScript = transform.root.GetComponent<PlayerMovement>();
 	}
 
 	void Update() {
-		if (!shootAtCursor) {
+		if (!shootAtCursor) { //shoot only left and right
 			if (Input.GetButtonDown("Fire1") && !GameManagerScript.Paused) { //better way of checking pause?
 				// If the player is facing right...
 				if(playerMoveScript.FacingRight) {
-					// ... instantiate the rocket facing right and set it's velocity to the right. 
+					// ... instantiate the bullet facing right and set it's velocity to the right. 
 					bulletRotation = Quaternion.Euler(Vector3.zero);
 					bulletVelocity = new Vector2(speed, 0);
 				} else { //otherwise, face and move rocket to left
-					bulletRotation = Quaternion.Euler(Vector3.left); //I think this property is correct
+					bulletRotation = Quaternion.Euler(Vector3.left); //I think this property is correct direction
 					bulletVelocity = new Vector2(-speed, 0);
 				}
 				//spawn the bullet. cache it to apply velocity
-				Rigidbody2D bulletInstance = Instantiate(bullet, transform.position, bulletRotation) as Rigidbody2D;
-				bulletInstance.velocity = bulletVelocity;
+				bulletInstance = Instantiate(bullet, transform.position, bulletRotation) as Rigidbody2D;
+				bulletInstance.velocity = bulletVelocity; //set bullet velocity on rigidbody
+				//set bullet damage after getting script attached to same GO as rigidbody. is there a better way so don't need to getComponent here?
+				bs = bulletInstance.GetComponent<BulletScript>() as BulletScript;
+				bs.Damage = bulletDamage;
 			}
-		} else {
+		} else { //shoot towards where mouse cursor is
 			//cursor position is in screen corrdinates. Need to translate this to world position.
 			cursorPos = Input.mousePosition;
 			cursorInWorld = Camera.main.ScreenToWorldPoint(cursorPos);
 			//get the difference between my position and the cursor's
 			float resultX = cursorInWorld.x - transform.position.x;
 			float resultY = cursorInWorld.y - transform.position.y;
-			//get the angle
+			//calc the angle
 			//I had to look this bit up. I could not find a method that did this math for me; Vector3.Angle returns between 0 and 180
 			float angle = Mathf.Atan2(resultY, resultX) * Mathf.Rad2Deg;
-			//the whole player (gun is a child thus flips too) transform flips when moving left, so this angle needs to flip to match the gun's change
+			//the whole player transform (gun is a child and thus it too) flips when moving left, so this angle needs to flip to match the gun's change
 			if (!playerMoveScript.FacingRight) {
 				angle *= -1;
 			}
@@ -65,6 +75,9 @@ public class GunScript : MonoBehaviour {
 				//spawn the bullet. cache it to apply velocity
 				Rigidbody2D bulletInstance = Instantiate(bullet, transform.position, bulletRotation) as Rigidbody2D;
 				bulletInstance.velocity = bulletVelocity;
+				//set bullet damage after getting script attached to same GO as rigidbody. is there a better way so don't need to getComponent here?
+				bs = bulletInstance.GetComponent<BulletScript>() as BulletScript;
+				bs.Damage = bulletDamage;
 			}
 		}
 	}
