@@ -9,7 +9,15 @@ public class PlayerHealth : Character {
 	public static event System.Action playerDeath;
 
 	void Start() {
-		health = 10; //health in Character
+		health = 10; //health (in Character)
+	}
+
+	void OnEnable() {
+		BuffPickup.buffPlayer += CheckHealthBuff;
+	}
+
+	void OnDisable() {
+		BuffPickup.buffPlayer -= CheckHealthBuff;
 	}
 
 	protected override void Die() {
@@ -23,5 +31,13 @@ public class PlayerHealth : Character {
 	/// </summary>
 	public void PlayerFell() {
 		Die();
+	}
+
+	private void CheckHealthBuff(BuffPickup.BuffTypes type, int amount) {
+		if (type == BuffPickup.BuffTypes.HEALTH) {
+			print("Player health: " + Health); //DEBUG print health before and after pickup buff
+			health += amount;
+			print("Player health: " + Health);
+		}
 	}
 }

@@ -22,7 +22,7 @@ public abstract class Character : MonoBehaviour, IDamageable {
 	public virtual void TakeDamage (int damage)	{
 		if (damage > 0) {
 			health -= damage;
-			print(health);
+			print(this.ToString() + "'s health: " + health); //DEBUG output Character health when taking damage
 		}
 		if (health <= 0) {
 			Die();

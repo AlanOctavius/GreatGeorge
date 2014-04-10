@@ -11,8 +11,7 @@ public class BulletScript : MonoBehaviour {
 	public int Damage {
 		get {
 			return this.damage;
-		}
-		set {
+		} set {
 			if (value >= 0) damage = value;
 		}
 	}
