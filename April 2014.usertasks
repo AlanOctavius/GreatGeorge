@@ -7,5 +7,9 @@
   <Task file="" description="bullets not harm character firing them" completed="True" />
   <Task file="" description="pick up gun, enable gunscript. need check child of? gunposition empty GO? or a pre-defined pos for each gun type?" completed="True" />
   <Task file="" description="gun change bullet damage" completed="True" />
-  <Task file="" description="use Pool for bullets so not constantly instantiating / Destroying all the time" />
+  <Task file="" description="use Pool for bullets so not constantly instantiating / Destroying all the time" priority="Low" />
+  <Task file="" description="longer hold jump, higher jump. add small force every tick. have time limit so not rocket boost" />
+  <Task file="" description="try level layout" />
+  <Task file="" description="use animated sprites in player test - how gun work?" />
+  <Task file="" description="basic Start Menu" />
 </ListOfTask>
