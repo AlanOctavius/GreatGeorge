@@ -34,7 +34,10 @@ public class BulletScript : MonoBehaviour {
 		IDamageable script = col.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
 		if (script != null && col.tag != "Player") { //TODO if we make enemies shoot guns, explicit player tag check will have to be changed
 			script.TakeDamage(damage);
-			Destroy(gameObject); //destroy bullet
+			//Destroy(gameObject); //destroy bullet
 		}
+		//Destroy when hit anything.
+		//TODO probably want to change to check for tag of environment
+		Destroy(gameObject); //destroy bullet
 	}
 }

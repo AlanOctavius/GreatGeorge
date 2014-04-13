@@ -15,6 +15,7 @@ public class GameManagerScript : MonoBehaviour {
 	/// <value><c>true</c> if game is currently paused; otherwise, <c>false</c>.</value>
 	public static bool Paused { 
 		get { return paused; } }
+	private static bool gameOver = false;
 
 	void Start() {
 		pauseScript = gameObject.GetComponent<PauseScript>() as PauseScript;
@@ -25,7 +26,7 @@ public class GameManagerScript : MonoBehaviour {
 		if (Input.GetButtonDown("Pause")) {
 			if (!paused)
 				PauseGame();
-			else
+			else if (!gameOver)
 				UnpauseGame();
 		}
 	}
@@ -42,6 +43,7 @@ public class GameManagerScript : MonoBehaviour {
 
 	void PlayerDied() {
 		//if player has more than one life, handle that here
+		gameOver = true;
 		PauseGame(PauseScript.PauseReason.PlayerDie);
 	}
 
