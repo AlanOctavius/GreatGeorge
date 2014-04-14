@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BulletScript : MonoBehaviour {
 
+	public string ShooterTag { get; set; }
 	private int damage = 1;
 	/// <summary>
 	/// Gets or sets the <paramref name="damage"/>the bullet deals. Only sets if <paramref name="damage"/> is not negative. Currently allows 0 damage in case we use pickups that debuff player to doing no damage.
@@ -16,8 +17,7 @@ public class BulletScript : MonoBehaviour {
 		}
 	}
 
-	void Start () 
-	{
+	void Start () {
 		// Destroy the rocket after 2 seconds if it doesn't get destroyed before then.
 		Destroy(gameObject, 2);
 	}
@@ -32,12 +32,11 @@ public class BulletScript : MonoBehaviour {
 		}
 		//I don't know if this is the best way. Using non-generic GetComponent can be costly, I believe. And seems a bit roundabout when we can just check tag and use a known script name.
 		IDamageable script = col.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
-		if (script != null && col.tag != "Player") { //TODO if we make enemies shoot guns, explicit player tag check will have to be changed
+		if (script != null && col.tag != ShooterTag) {
 			script.TakeDamage(damage);
 			//Destroy(gameObject); //destroy bullet
 		}
-		//Destroy when hit anything.
-		//TODO probably want to change to check for tag of environment
-		Destroy(gameObject); //destroy bullet
+		//Destroy when hit ground of enemies
+		if (col.tag == "ground" || col.tag == "Enemy") Destroy(gameObject); //destroy bullet
 	}
 }

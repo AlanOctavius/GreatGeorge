@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour {
 		get { return facingRight; } }
 	private bool jumpPressed = false;
 	private bool jumping = false;
-	 
-	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxWalkSpeed = 5f;				// The fastest the player can travel in the x axis.
-	public float jumpForce = 50f;			// Amount of force added when the player jumps.
-	public float maxJumpSpeed = 12f;
+
+	//DEBUG serialzed for testing
+	[SerializeField] private float moveForce = 365f;			// Amount of force added to move the player left and right.
+	[SerializeField] private float maxWalkSpeed = 5f;				// The fastest the player can travel in the x axis.
+	[SerializeField] private float jumpForce = 50f;			// Amount of force added when the player jumps.
+	[SerializeField] private float maxJumpSpeed = 12f;
 
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.

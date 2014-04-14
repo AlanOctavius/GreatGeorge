@@ -12,8 +12,8 @@
   <Task file="" description="try level layout" />
   <Task file="" description="use animated sprites in player test - how gun work?" />
   <Task file="" description="basic Start Menu" completed="True" />
-  <Task file="" description="clamp gun rotation" />
-  <Task file="" description="bullets die on hit anything" />
+  <Task file="" description="clamp gun rotation" completed="True" />
+  <Task file="" description="bullets die on hit anything" completed="True" />
   <Task file="" description="Escape doesn't close menu on death (game over bool set when die)" completed="True" />
-  <Task file="" description="Shooter tag on bullet so don't collide with it (or at least damage)" />
+  <Task file="" description="Shooter tag on bullet so don't collide with it (or at least damage)" completed="True" />
 </ListOfTask>
