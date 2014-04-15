@@ -42,6 +42,10 @@ public class PauseScript : MonoBehaviour {
 	[SerializeField] private float buttonHeight = 75f;
 	[SerializeField] private float buttonSpacing = 20f;
 
+	private GUIStyle centeredLabel;
+	private string pauseTitle = "Game Paused";
+	private string diedTitle = "You have died!";
+
 	void OnEnable() {
 		Time.timeScale = 0.0f;
 	}
@@ -69,11 +73,18 @@ public class PauseScript : MonoBehaviour {
 		height = scrnH * (menuSizePercent / 100f);
 		width = scrnW * (menuSizePercent / 100f);
 
+		centeredLabel = new GUIStyle(GUI.skin.label);
+		centeredLabel.alignment = TextAnchor.UpperCenter;
+
 		GUI.BeginGroup(new Rect(offsetFromLeft, offsetFromTop, width, height));
 		GUI.Box(new Rect(0,0, width, height), "");
 
-		//TODO string reason like "You have died" or "game paused"
-		GUI.Label(new Rect(width / 2 - 20, 50, 100, 25), Reason.ToString());
+		//only unique label for death. If use other end states, add new labels
+		if (Reason == PauseReason.PlayerDie) {
+			GUI.Label(new Rect(width / 2 - 50, 50, 100, 25), diedTitle, centeredLabel);
+		} else {
+			GUI.Label(new Rect(width / 2 - 50, 50, 100, 25), pauseTitle, centeredLabel);
+		}
 
 		if (Reason == PauseReason.Pause) {
 			if (GUI.Button(new Rect(width / 2 - buttonWidth / 2, buttonHeight * 2, buttonWidth, buttonHeight), "Resume")) {

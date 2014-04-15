@@ -348,7 +348,7 @@ MonoBehaviour:
   bullet: {fileID: 5000000, guid: 566102334bc3ece4abb3fdb65d08f304, type: 2}
   bulletDamage: 2
   bulletSpeed: 20
-  shootAtCursor: 0
+  shootAtCursor: 1
 --- !u!212 &674165827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -535,8 +535,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 365
-  maxSpeed: 5
-  jumpForce: 1000
+  maxWalkSpeed: 5
+  jumpForce: 115
+  maxJumpSpeed: 12
 --- !u!212 &817879128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -726,7 +727,7 @@ GameObject:
   - 50: {fileID: 933219713}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -903,7 +904,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1103085585}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Size: {x: 1, y: .5}
@@ -922,7 +923,7 @@ MonoBehaviour:
   bullet: {fileID: 5000000, guid: 566102334bc3ece4abb3fdb65d08f304, type: 2}
   bulletDamage: 1
   bulletSpeed: 20
-  shootAtCursor: 0
+  shootAtCursor: 1
 --- !u!212 &1103085589
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1337,7 +1338,7 @@ MonoBehaviour:
   bullet: {fileID: 5000000, guid: 566102334bc3ece4abb3fdb65d08f304, type: 2}
   bulletDamage: 3
   bulletSpeed: 20
-  shootAtCursor: 0
+  shootAtCursor: 1
 --- !u!114 &1899235814
 MonoBehaviour:
   m_ObjectHideFlags: 0

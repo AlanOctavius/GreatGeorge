@@ -21,6 +21,11 @@ public class GunScript : MonoBehaviour {
 	private Vector3 cursorPos;
 	private Vector3 cursorInWorld;
 
+	//So that we aren't creating and destroying these vars every frame.
+	private float resultX;
+	private float resultY;
+	private float angle;
+
 	void Awake() {
 		//in Awake for 2 reasons: 1, ensures this is set false before possible re-enable in Start of PickUpGunScript (all Awakes happen before any Starts)
 		//and 2, Awake happens before OnEnable while Start doesn't. this is probably less important though.
@@ -40,17 +45,21 @@ public class GunScript : MonoBehaviour {
 	}
 
 	void Update() {
+		if (shootAtCursor) { //shoot only left and right
+			ShootAtCursor();
+		}
 		if (Input.GetButtonDown("Fire1") && !GameManagerScript.Paused) { //better way of checking pause?
-			//set velocity (and rotation) in helper methods
-			if (!shootAtCursor) { //shoot only left and right
+			if (!shootAtCursor) {
 				ShootHorizontal();
-			} else { ShootAtCursor(); }
+			}
+			//set velocity (and rotation) in helper methods
 			//spawn the bullet. cache it to set velocity and damage
 			bulletInstance = Instantiate(bullet, transform.position, bulletRotation) as Rigidbody2D;
 			bulletInstance.velocity = bulletVelocity; //set bullet velocity on rigidbody
 			//set bullet damage after getting script attached to same GO as rigidbody. is there a better way so don't need to getComponent here?
 			bs = bulletInstance.GetComponent<BulletScript>() as BulletScript;
 			bs.Damage = bulletDamage;
+			bs.ShooterTag = transform.parent.tag; //when gun is child of character, need to use parent's tag
 		}
 	}
 
@@ -67,23 +76,39 @@ public class GunScript : MonoBehaviour {
 		}
 	}
 
+	void OnGUI() {
+		GUI.Label(new Rect(0, 60, 200, 20), resultX.ToString("F1"));
+		GUI.Label(new Rect(0, 75, 200, 20), resultY.ToString("F1"));
+		GUI.Label(new Rect(0, 90, 200, 20), angle.ToString("F1"));
+	}
+
 	//helper sets velocity and rotation of bullet (and rotation of gun)
 	void ShootAtCursor() {
 		//cursor position is in screen corrdinates. Need to translate this to world position.
 		cursorPos = Input.mousePosition;
 		cursorInWorld = Camera.main.ScreenToWorldPoint(cursorPos);
 		//get the difference between my position and the cursor's
-		float resultX = cursorInWorld.x - transform.position.x;
-		float resultY = cursorInWorld.y - transform.position.y;
+		resultX = cursorInWorld.x - transform.position.x;
+		resultY = cursorInWorld.y - transform.position.y;
 		//calc the angle
 		//I had to look this bit up. I could not find a method that did this math for me; Vector3.Angle returns between 0 and 180
-		float angle = Mathf.Atan2(resultY, resultX) * Mathf.Rad2Deg;
+		angle = Mathf.Atan2(resultY, resultX) * Mathf.Rad2Deg;
 		//the whole player transform (gun is a child and thus it too) flips when moving left, so this angle needs to flip to match the gun's change
 		if (!playerMoveScript.FacingRight) {
 			angle *= -1;
+			//manual clamping needed since angle goes 90 - 180 or -90 - -180
+			if (angle >= 0 && angle <= 90) {
+				angle = 90f;
+			} else if (angle >= -90f && angle <= 0) {
+				angle = -90f;
+			}
+			if (resultX > 0) resultX = 0;
+			transform.rotation = Quaternion.Euler(0, 0, angle);
+		} else {
+			//manually set rotation so that the gun is rotated to point at cursor position
+			transform.rotation = Quaternion.Euler(0, 0, Mathf.Clamp(angle, -90, 90f));
+			if (resultX < 0) resultX = 0;
 		}
-		//manually set rotation so that the gun is rotated to point at cursor position
-		transform.rotation = Quaternion.Euler(0, 0, angle);
 		bulletRotation = transform.rotation; //maybe this works?
 		//normalize vector before multiplying by speed so that movement speed is similar in both this and horizontal shooting
 		bulletVelocity = new Vector2(resultX, resultY).normalized * bulletSpeed;

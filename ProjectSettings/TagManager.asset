@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   tags:
+<<<<<<< HEAD
   - Hostile
+=======
+  - ground
+  - Enemy
+>>>>>>> 0df6e437c5a9dedbbe0348430018fc7e7f83312a
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
