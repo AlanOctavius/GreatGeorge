@@ -36,7 +36,7 @@ public class BulletScript : MonoBehaviour {
 			script.TakeDamage(damage);
 			//Destroy(gameObject); //destroy bullet
 		}
-		//Destroy when hit ground of enemies
+		//Destroy when hit ground or enemies
 		if (col.tag == "ground" || col.tag == "Enemy") Destroy(gameObject); //destroy bullet
 	}
 }
