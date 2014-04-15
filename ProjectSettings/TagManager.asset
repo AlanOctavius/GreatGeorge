@@ -3,12 +3,8 @@
 --- !u!78 &1
 TagManager:
   tags:
-<<<<<<< HEAD
+  - 
   - Hostile
-=======
-  - ground
-  - Enemy
->>>>>>> 0df6e437c5a9dedbbe0348430018fc7e7f83312a
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -18,7 +14,7 @@ TagManager:
   Builtin Layer 5: 
   Builtin Layer 6: 
   Builtin Layer 7: 
-  User Layer 8: Ground
+  User Layer 8: 
   User Layer 9: 
   User Layer 10: 
   User Layer 11: 
@@ -46,24 +42,4 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
-    locked: 0
-  - name: Default
-    userID: 1
-    uniqueID: 3363470833
-    locked: 0
-  - name: Background
-    userID: 2
-    uniqueID: 1535931219
-    locked: 0
-  - name: Character
-    userID: 4
-    uniqueID: 2511236001
-    locked: 0
-  - name: Foreground
-    userID: 3
-    uniqueID: 1024582385
-    locked: 0
-  - name: UI
-    userID: 5
-    uniqueID: 149272721
     locked: 0
