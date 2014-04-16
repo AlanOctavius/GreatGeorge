@@ -1,20 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerWeaponScript : MonoBehaviour {
+public class PlayerCombat : MonoBehaviour {
 
 	//An empty GO exists on player for use as a position to set the gun to. this is a reference to it's transform.
 	//Could use a hard-coded position, but this is prettier. If guns need to be placed at different positions (a rocket launcher wouldn't go to same place as a handgun), need to use something else.
 	private Transform gunPosition;
-	private GunScript gs; //holds the currently-equipped gun's script for access to it
 	private BoxCollider2D gunCollider;
+	private GunScript gs;
+	private PlayerMovement ps;
+
+	private Vector3 cursorPos;
+	//private Vector3 cursorInWorld;
 
 	void Start() {
+		//get child gunscript
+		gs = GetComponentInChildren<GunScript>() as GunScript;
+		ps = GetComponent<PlayerMovement>() as PlayerMovement;
 		gunPosition = transform.Find("GunPosition");
-		gs = GetComponentInChildren<GunScript>() as GunScript; //If player doesn't start with gun, will be null.
+
 		if (gs != null) {
 			gs.enabled = true; //if player does start with a gun, its script should be enabled at start of level.
 		}
+	}
+
+	void Update() {
+		cursorPos = Input.mousePosition;
+		gs.TargetLocation = Camera.main.ScreenToWorldPoint(cursorPos);
+		gs.FacingRight = ps.FacingRight;
+		if (Input.GetButtonDown("Fire1") && !GameManagerScript.Paused) gs.Shoot();
+		if (Input.GetButtonDown("Fire2") && !GameManagerScript.Paused) gs.ShootSecondary();
+	}
+
+	void OnEnable() {
+		BuffPickup.buffPlayer += CheckDamageBuff;
+	}
+	
+	void OnDisable() {
+		BuffPickup.buffPlayer -= CheckDamageBuff;
+	}
+
+	//permanent boost. if actually use, may want to change implementation so has timer or something
+	void CheckDamageBuff(BuffPickup.BuffTypes type, int amount) {
+		if (type == BuffPickup.BuffTypes.DAMAGE_UP && this.enabled)
+			gs.BulletDamage += amount;
 	}
 
 	/// <summary>
@@ -22,20 +51,21 @@ public class PlayerWeaponScript : MonoBehaviour {
 	/// </summary>
 	/// <param name="gun">Picked up gun's transform</param>
 	public void PickUpGun(Transform gun) {
+		gs = GetComponentInChildren<GunScript>() as GunScript;
 		if (gs == null) { //if no recollection of currently equipped gun (e.g. player didn't have one at level start)
 			gs = GetComponentInChildren<GunScript>() as GunScript; //try again to find a gun on player. may never happen since gs gets set after every pickup. but should check anyway?
 		}
 		if (gs != null) { //if player does have a gun equipped (gs will only be not null after picking up a gun)
 			Destroy(gs.gameObject); //throw it away; destroy the GO
 		}
-
+		
 		gun.parent = transform; //child the gun so it moves with player
 		if (gunPosition != null) gun.position = gunPosition.position; //set its position to that of pre-determined gun position for player
 		gs = gun.GetComponent<GunScript>() as GunScript; //set new gun's script as gs
 		if (gs != null) {
 			gs.enabled = true; //if didn't fail in attempt to do that, enable the script so gun can be fired
 		}
-
+		
 		gunCollider = gun.GetComponent<BoxCollider2D>() as BoxCollider2D;
 		gunCollider.enabled = false;
 	}

@@ -9,11 +9,15 @@
   <Task file="" description="gun change bullet damage" completed="True" />
   <Task file="" description="use Pool for bullets so not constantly instantiating / Destroying all the time" priority="Low" />
   <Task file="" description="longer hold jump, higher jump. add small force every tick. have time limit so not rocket boost" completed="True" />
-  <Task file="" description="try level layout" />
-  <Task file="" description="use animated sprites in player test - how gun work?" />
+  <Task file="" description="try level layout" completed="True" />
+  <Task file="" description="use animated sprites in player test - how gun work?" completed="True" />
   <Task file="" description="basic Start Menu" completed="True" />
   <Task file="" description="clamp gun rotation" completed="True" />
   <Task file="" description="bullets die on hit anything" completed="True" />
   <Task file="" description="Escape doesn't close menu on death (game over bool set when die)" completed="True" />
   <Task file="" description="Shooter tag on bullet so don't collide with it (or at least damage)" completed="True" />
+  <Task file="" description="animation transitions" completed="True" />
+  <Task file="" description="refactor gun script - remove player-specific things" completed="True" />
+  <Task file="" description="secondary weapon - grenade" completed="True" />
+  <Task file="" description="player face cursor, rather than flipping transform when move opposite facing direction" completed="True" />
 </ListOfTask>

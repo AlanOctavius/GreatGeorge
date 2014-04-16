@@ -22,8 +22,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float horizontalInput = 0;
 
+	private Vector3 cursorPos;
+	private Vector3 cursorInWorld;
+
+	private Animator anim;
+
 	void Start() {
 		groundCheck = transform.Find("Ground Check");
+		anim = GetComponent<Animator>() as Animator;
 	}
 
 	void Update() {
@@ -31,6 +37,14 @@ public class PlayerMovement : MonoBehaviour {
 		int mask = 1 << LayerMask.NameToLayer("Ground");
 		//Debug.Log(mask);
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, mask);
+
+		cursorPos = Input.mousePosition;
+		cursorInWorld = Camera.main.ScreenToWorldPoint(cursorPos);
+		if (facingRight) {
+			if (cursorInWorld.x < transform.position.x) { Flip(); }
+		} else {
+			if (cursorInWorld.x > transform.position.x) { Flip(); }
+		}
 
 		if (Input.GetButton("Jump")) {
 			jumpPressed = true;
@@ -57,15 +71,6 @@ public class PlayerMovement : MonoBehaviour {
 			// ... set the player's velocity to the maxSpeed in the x axis.
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxWalkSpeed, rigidbody2D.velocity.y);
 		}
-
-		// If the input is moving the player right and the player is facing left...
-		if(horizontalInput > 0 && !facingRight) {
-			// ... flip the player.
-			Flip();		
-		} else if(horizontalInput < 0 && facingRight) { // Otherwise if the input is moving the player left and the player is facing right...
-			// ... flip the player.
-			Flip();
-		}
 		
 		// If the player is jumping
 		if (jumping) {
@@ -74,6 +79,8 @@ public class PlayerMovement : MonoBehaviour {
 				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 			else jumping = false;
 		}
+
+		anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
 	}
 
 	void OnGUI() {
