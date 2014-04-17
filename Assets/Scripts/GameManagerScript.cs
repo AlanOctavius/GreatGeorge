@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 
-	private int score = 0;
-	public int GameScore { 
+	private static int score = 0;
+	public static int GameScore { 
 		get { return score; } }
 
 	private static PauseScript pauseScript;
@@ -91,7 +91,8 @@ public class GameManagerScript : MonoBehaviour {
 	/// </summary>
 	/// <returns>The player's total score</returns>
 	/// <param name="score">How much score to give the player</param>
-	public int IncreaseScore(int score) {
-		return this.score += score;
+	public static void IncreaseScore(int scoreInc) {
+		score += scoreInc;
+
 	}
 }

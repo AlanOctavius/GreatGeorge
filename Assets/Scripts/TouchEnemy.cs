@@ -12,6 +12,8 @@ public class TouchEnemy : Character {
 	private Transform aheadGroundCheck;
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 
+	protected int pointValue = 10;
+
 	public bool debugAheadFloor = false;
 
 	//Movement
@@ -27,9 +29,11 @@ public class TouchEnemy : Character {
 
 	// Use this for initialization
 	void Start () {
+
 		groundCheck = transform.FindChild ("Ground Check");
 		aheadContactCheck = transform.FindChild ("Ahead Check");
 		aheadGroundCheck = transform.FindChild ("Ahead Ground Check");
+		ExtraStart ();
 	}
 	
 	// Update is called once per frame
@@ -47,7 +51,8 @@ public class TouchEnemy : Character {
 		aheadContact = Physics2D.Linecast (transform.position, aheadContactCheck.position,mask);
 		grounded = Physics2D.Linecast (transform.position, groundCheck.position,mask);
 		// Ahead ground fails if there is nothing ahead
-		aheadGround = !Physics2D.Linecast (transform.position, aheadGroundCheck.position,mask);
+		// Place back in so hostile do not walk off ledge
+		//aheadGround = !Physics2D.Linecast (transform.position, aheadGroundCheck.position,mask);
 
 		if (aheadGround) {
 			debugAheadFloor = true;
@@ -81,7 +86,12 @@ public class TouchEnemy : Character {
 		}
 
 	protected override void Die(){
+		GameManagerScript.IncreaseScore (pointValue);
 		Destroy(gameObject);
+
 		}
+	protected virtual void ExtraStart(){
+	}
+
 
 }
