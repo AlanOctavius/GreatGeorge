@@ -10,6 +10,8 @@ public class PlayerCombat : MonoBehaviour {
 	private GunScript gs;
 	private PlayerMovement ps;
 
+	private int secondaryAmmo = 1;
+
 	private Vector3 cursorPos;
 	//private Vector3 cursorInWorld;
 
@@ -29,21 +31,30 @@ public class PlayerCombat : MonoBehaviour {
 		gs.TargetLocation = Camera.main.ScreenToWorldPoint(cursorPos);
 		gs.FacingRight = ps.FacingRight;
 		if (Input.GetButtonDown("Fire1") && !GameManagerScript.Paused) gs.Shoot();
-		if (Input.GetButtonDown("Fire2") && !GameManagerScript.Paused) gs.ShootSecondary();
+		if (Input.GetButtonDown("Fire2") && !GameManagerScript.Paused) {
+			if (secondaryAmmo > 0) {
+				gs.ShootSecondary();
+				--secondaryAmmo;
+			}
+		}
 	}
 
 	void OnEnable() {
-		BuffPickup.buffPlayer += CheckDamageBuff;
+		BuffPickup.BuffPlayer += CheckCombatBuff;
+		BuffPickup.BuffPlayer += CheckCombatBuff;
 	}
 	
 	void OnDisable() {
-		BuffPickup.buffPlayer -= CheckDamageBuff;
+		BuffPickup.BuffPlayer -= CheckCombatBuff;
+		BuffPickup.BuffPlayer -= CheckCombatBuff;
 	}
 
-	//permanent boost. if actually use, may want to change implementation so has timer or something
-	void CheckDamageBuff(BuffPickup.BuffTypes type, int amount) {
-		if (type == BuffPickup.BuffTypes.DAMAGE_UP && this.enabled)
+	//bullet damage permanent boost? if actually use, may want to change implementation so has timer or something
+	void CheckCombatBuff(BuffPickup.BuffTypes type, int amount) {
+		if (type == BuffPickup.BuffTypes.DAMAGE_UP)
 			gs.BulletDamage += amount;
+		else if (type == BuffPickup.BuffTypes.AMMO_SECONDARY)
+			secondaryAmmo =+ amount;
 	}
 
 	/// <summary>

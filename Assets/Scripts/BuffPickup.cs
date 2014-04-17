@@ -14,11 +14,16 @@ public class BuffPickup : MonoBehaviour {
 		/// <summary>
 		/// Increase damage of the gun player is using
 		/// </summary>
-		DAMAGE_UP }
+		DAMAGE_UP,
+		/// <summary>
+		/// Increase amound of grenades carrying
+		/// </summary>
+		AMMO_SECONDARY
+	}
 	/// <summary>
 	/// Occurs when player picks up a buff
 	/// </summary>
-	public static event System.Action<BuffTypes, int> buffPlayer;
+	public static event System.Action<BuffTypes, int> BuffPlayer;
 
 	[SerializeField]
 	private BuffTypes type;
@@ -27,8 +32,8 @@ public class BuffPickup : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
-			if (buffPlayer != null) {
-				buffPlayer(type, amount);
+			if (BuffPlayer != null) {
+				BuffPlayer(type, amount);
 			}
 			Destroy(gameObject); //remove buff from scene
 		}
