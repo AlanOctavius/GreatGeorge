@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(CircleCollider2D))]
+[RequireComponent (typeof(Rigidbody2D))]
 public class BulletScript : MonoBehaviour {
 
 	public string ShooterTag { get; set; }
-	private int damage = 1;
+	//for normal bullets, this value may be overwritten by changes to the Damage property by gun
+	[SerializeField] private int damage = 1;
+	[SerializeField] private bool isGrenade = false;
+	[SerializeField] private float damageRadius = 0;
+	[SerializeField] private float fuseTime = 0;
+
 	/// <summary>
 	/// Gets or sets the <paramref name="damage"/>the bullet deals. Only sets if <paramref name="damage"/> is not negative. Currently allows 0 damage in case we use pickups that debuff player to doing no damage.
 	/// </summary>
@@ -19,24 +26,41 @@ public class BulletScript : MonoBehaviour {
 
 	void Start () {
 		// Destroy the rocket after 2 seconds if it doesn't get destroyed before then.
-		Destroy(gameObject, 2);
+		if (damageRadius <=0) isGrenade = false;
+		if (isGrenade) {
+			Invoke("Explode", fuseTime);
+			gameObject.layer = 10;
+		} else {
+			Destroy(gameObject, 2);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col) {
-		if (col.tag == "Enemy") {
-			//e.g.:
-			//EnemyScript es = col.gameObject.GetComponent<EnemyScript>()
-			//es.TakeDamage(damage);
-			//Destroy(gameObject); //destroy bullet
-			//return; //exit so that doesn't call the next bit of the method that would do the same thing again.
+		if (!isGrenade) {
+			IDamageable script = col.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
+			if (script != null && col.tag != ShooterTag) {
+				script.TakeDamage(damage);
+				//Destroy(gameObject); //destroy bullet
+			}
+			//Destroy when hit ground or enemies
+			if (col.tag == "ground" || col.tag == "Enemy") Destroy(gameObject); //destroy bullet
 		}
-		//I don't know if this is the best way. Using non-generic GetComponent can be costly, I believe. And seems a bit roundabout when we can just check tag and use a known script name.
-		IDamageable script = col.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
-		if (script != null && col.tag != ShooterTag) {
-			script.TakeDamage(damage);
-			//Destroy(gameObject); //destroy bullet
+	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (isGrenade) {
+			rigidbody2D.drag = 0.25f;
 		}
-		//Destroy when hit ground of enemies
-		if (col.tag == "ground" || col.tag == "Enemy") Destroy(gameObject); //destroy bullet
+	}
+
+	void Explode() {
+		Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, damageRadius);
+		foreach (Collider2D col in colls) {
+			IDamageable script = col.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
+			if (script != null && col.tag != ShooterTag) {
+				script.TakeDamage(damage);
+			}
+		}
+		Destroy(gameObject); //destroy bullet
 	}
 }

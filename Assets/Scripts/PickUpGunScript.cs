@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent (typeof(Collider2D)), RequireComponent (typeof(GunScript))] //not sure if even helpful
 public class PickUpGunScript : MonoBehaviour {
 
-	private PlayerWeaponScript pw; //so not creating variable every gun pickup
+	private PlayerCombat pcs; //so not creating variable every gun pickup
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
@@ -16,8 +16,8 @@ public class PickUpGunScript : MonoBehaviour {
 			}
 			GunScript gs = GetComponent<GunScript>() as GunScript;
 			gs.enabled = true;*/
-			pw = other.GetComponent<PlayerWeaponScript>() as PlayerWeaponScript;
-			pw.PickUpGun(transform); //tell player to pick us up
+			pcs = other.GetComponent<PlayerCombat>() as PlayerCombat;
+			pcs.PickUpGun(transform); //tell player to pick us up
 			//this.enabled = false; //Does nothing since enabled only changes Update method. if pick-up triggering again occurs, need to implement own boolean and check when onTrigger occurs whether or not to ignore
 		}
 	}

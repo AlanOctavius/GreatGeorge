@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerHealth : Character {
@@ -13,11 +13,11 @@ public class PlayerHealth : Character {
 	}
 
 	void OnEnable() {
-		BuffPickup.buffPlayer += CheckHealthBuff;
+		BuffPickup.BuffPlayer += CheckHealthBuff;
 	}
 
 	void OnDisable() {
-		BuffPickup.buffPlayer -= CheckHealthBuff;
+		BuffPickup.BuffPlayer -= CheckHealthBuff;
 	}
 
 	protected override void Die() {
