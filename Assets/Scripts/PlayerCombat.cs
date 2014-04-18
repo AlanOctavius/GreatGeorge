@@ -41,20 +41,19 @@ public class PlayerCombat : MonoBehaviour {
 
 	void OnEnable() {
 		BuffPickup.BuffPlayer += CheckCombatBuff;
-		BuffPickup.BuffPlayer += CheckCombatBuff;
 	}
 	
 	void OnDisable() {
-		BuffPickup.BuffPlayer -= CheckCombatBuff;
 		BuffPickup.BuffPlayer -= CheckCombatBuff;
 	}
 
 	//bullet damage permanent boost? if actually use, may want to change implementation so has timer or something
 	void CheckCombatBuff(BuffPickup.BuffTypes type, int amount) {
-		if (type == BuffPickup.BuffTypes.DAMAGE_UP)
+		if (type == BuffPickup.BuffTypes.DAMAGE_UP) {
 			gs.BulletDamage += amount;
-		else if (type == BuffPickup.BuffTypes.AMMO_SECONDARY)
-			secondaryAmmo =+ amount;
+		} else if (type == BuffPickup.BuffTypes.AMMO_SECONDARY) {
+			secondaryAmmo += amount;
+		}
 	}
 
 	/// <summary>

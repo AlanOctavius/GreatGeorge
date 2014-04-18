@@ -16,7 +16,7 @@ public class BuffPickup : MonoBehaviour {
 		/// </summary>
 		DAMAGE_UP,
 		/// <summary>
-		/// Increase amound of grenades carrying
+		/// Increase amount of grenades player is carrying
 		/// </summary>
 		AMMO_SECONDARY
 	}
@@ -35,7 +35,7 @@ public class BuffPickup : MonoBehaviour {
 			if (BuffPlayer != null) {
 				BuffPlayer(type, amount);
 			}
-			Destroy(gameObject); //remove buff from scene
+			Destroy(gameObject); //remove buff item from scene
 		}
 	}
 }

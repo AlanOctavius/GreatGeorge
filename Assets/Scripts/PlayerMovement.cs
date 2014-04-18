@@ -15,7 +15,10 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float moveForce = 365f;			// Amount of force added to move the player left and right.
 	[SerializeField] private float maxWalkSpeed = 5f;				// The fastest the player can travel in the x axis.
 	[SerializeField] private float jumpForce = 50f;			// Amount of force added when the player jumps.
+	[SerializeField] private float initialJumpForce = 250f;
 	[SerializeField] private float maxJumpSpeed = 12f;
+
+	private bool firstFrameJump = false;
 
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
@@ -48,9 +51,14 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetButton("Jump")) {
 			jumpPressed = true;
+			if (firstFrameJump) firstFrameJump = false;
 		} else {
 			jumpPressed = false;
 			jumping = false;
+		}
+
+		if (Input.GetButtonDown("Jump")) {
+			firstFrameJump = true;
 		}
 
 		if (grounded && jumpPressed) jumping = true;
@@ -75,9 +83,14 @@ public class PlayerMovement : MonoBehaviour {
 		// If the player is jumping
 		if (jumping) {
 			// Add a vertical force to the player.
-			if (rigidbody2D.velocity.y <= maxJumpSpeed)
-				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-			else jumping = false;
+			if (rigidbody2D.velocity.y <= maxJumpSpeed) {
+				if (firstFrameJump) {
+					rigidbody2D.AddForce(new Vector2(0f, initialJumpForce));
+					print("initial frame");
+				} else {
+					rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+				}
+			} else jumping = false;
 		}
 
 		anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
