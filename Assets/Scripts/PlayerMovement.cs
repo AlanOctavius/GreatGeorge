@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
+		anim.SetBool("Jump", !grounded);
 	}
 
 	void OnGUI() {

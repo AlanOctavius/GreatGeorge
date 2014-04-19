@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GunScript : MonoBehaviour {
 
-	//TODO once we decide whether we are shooting horizontally or at cursor, remove boolean (and check and other heloer method). otherwise, each gun picked up can change this behavior
+	private Animator anim;
 
 	private PlayerMovement playerMoveScript; //init in Start
 
@@ -38,6 +38,9 @@ public class GunScript : MonoBehaviour {
 		//in Awake for 2 reasons: 1, ensures this is set false before possible re-enable in Start of PickUpGunScript (all Awakes happen before any Starts)
 		//and 2, Awake happens before OnEnable while Start doesn't. this is probably less important though.
 		this.enabled = false;
+		if (transform.parent.tag == "Player") {
+			anim = transform.parent.GetComponent<Animator>() as Animator;
+		}
 	}
 
 	public void Shoot() {
@@ -51,6 +54,10 @@ public class GunScript : MonoBehaviour {
 		bs = projectileInstance.GetComponent<BulletScript>() as BulletScript;
 		bs.Damage = BulletDamage;
 		bs.ShooterTag = transform.parent.tag; //when gun is child of character, need to use parent's tag
+
+		if (transform.parent.tag == "Player") {
+			anim.SetTrigger("Shooting");
+		}
 	}
 
 	public void ShootSecondary() {
@@ -82,7 +89,7 @@ public class GunScript : MonoBehaviour {
 		angle = Mathf.Atan2(resultY, resultX) * Mathf.Rad2Deg;
 		//the whole player transform (gun is a child and thus it too) flips when moving left, so this angle needs to flip to match the gun's change
 		if (!FacingRight) {
-			angle *= -1;
+			//angle *= -1;
 			//gun angle:
 			//manual clamping needed since angle goes 90 - 180 or -90 - -180
 			if (angle >= 0 && angle <= 90) {
@@ -98,6 +105,19 @@ public class GunScript : MonoBehaviour {
 			transform.rotation = Quaternion.Euler(0, 0, Mathf.Clamp(angle, -90, 90f));
 			//bullet X velocity clamp:
 			if (resultX < 0) resultX = 0;
+		}
+
+		if (transform.parent.tag == "Player") {
+			//anim.SetFloat("Angle", (FacingRight ? angle : -angle - 180));
+			if (FacingRight) {
+				anim.SetFloat("Angle", angle);
+			} else {
+				if (angle >= 90) {
+					anim.SetFloat("Angle", 180 - angle);
+				} else {
+					anim.SetFloat("Angle", -180 - angle);
+				}
+			}
 		}
 	}
 }

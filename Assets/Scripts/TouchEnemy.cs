@@ -27,6 +27,8 @@ public class TouchEnemy : Character {
 	//Useful transform
 	private Vector3 invertYVec = new Vector3(-1,1,1);
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start () {
 
@@ -34,6 +36,8 @@ public class TouchEnemy : Character {
 		aheadContactCheck = transform.FindChild ("Ahead Check");
 		aheadGroundCheck = transform.FindChild ("Ahead Ground Check");
 		ExtraStart ();
+
+		anim = GetComponent<Animator>() as Animator;
 	}
 	
 	// Update is called once per frame
@@ -68,7 +72,7 @@ public class TouchEnemy : Character {
 			rigidbody2D.AddForce(Vector2.right * movingDirection * moveForce);
 		}
 
-
+		anim.SetFloat("speed", Mathf.Abs(rigidbody2D.velocity.x));
 	}
 
 

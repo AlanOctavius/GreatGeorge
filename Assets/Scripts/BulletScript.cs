@@ -43,7 +43,7 @@ public class BulletScript : MonoBehaviour {
 				//Destroy(gameObject); //destroy bullet
 			}
 			//Destroy when hit ground or enemies
-			if (col.tag == "ground" || col.tag == "Enemy") Destroy(gameObject); //destroy bullet
+			if (col.tag == "ground" || (ShooterTag == "Hostile" ? col.tag == "Player" : false) || (ShooterTag == "Player" ? col.tag == "Hostile" : false)) Destroy(gameObject); //destroy bullet
 		}
 	}
 
@@ -61,6 +61,6 @@ public class BulletScript : MonoBehaviour {
 				script.TakeDamage(damage);
 			}
 		}
-		Destroy(gameObject); //destroy bullet
+		Destroy(gameObject); //destroy grenade
 	}
 }

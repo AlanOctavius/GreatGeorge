@@ -7,7 +7,7 @@ public class DestroyerScript : MonoBehaviour {
 		if (coll.tag == "Player") {
 			PlayerHealth ph = coll.gameObject.GetComponent<PlayerHealth>() as PlayerHealth;
 			ph.PlayerFell();
-		} else if (coll.tag == "Enemy") {
+		} else if (coll.tag == "Hostile") {
 			Destroy(coll.gameObject);
 		} else {
 			//destroys anything that collides with this, but hopefully nothing will other than enemies.
