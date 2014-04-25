@@ -184,6 +184,56 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &180925333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 180925335}
+  - 114: {fileID: 180925334}
+  - 114: {fileID: 180925336}
+  m_Layer: 0
+  m_Name: GUI Elements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &180925334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180925333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522b136d737cc7d4baa8c1fc384ce5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &180925335
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180925333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &180925336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180925333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a558fba40da5c34582ceadf38ff0289, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &188397984
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +433,7 @@ MonoBehaviour:
   moveForce: 365
   maxWalkSpeed: 5
   jumpForce: 115
+  initialJumpForce: 250
   maxJumpSpeed: 12
 --- !u!212 &817879128
 SpriteRenderer:
@@ -452,7 +503,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 817879125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba659095d0df1b45af8382e4d7eefa7, type: 3}
+  m_Script: {fileID: 11500000, guid: 13bffed564cacae43a52c7bba9584cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &915717445
@@ -762,9 +813,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5000000, guid: 566102334bc3ece4abb3fdb65d08f304, type: 2}
+  grenade: {fileID: 0}
   bulletDamage: 1
   bulletSpeed: 20
-  shootAtCursor: 1
+  grenadeSpeed: 20
 --- !u!212 &1103085589
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -960,68 +1012,6 @@ Prefab:
   m_RootGameObject: {fileID: 1255605852}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &1337339569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1337339570}
-  - 132: {fileID: 1337339572}
-  - 114: {fileID: 1337339571}
-  m_Layer: 0
-  m_Name: GUI Score
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1337339570
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1337339569}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .106898814, y: .93501246, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!114 &1337339571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1337339569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a31eefa0f4a13d341b4c3f27dd6f9350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!132 &1337339572
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1337339569}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 'Score :'
-  m_Anchor: 0
-  m_Alignment: 0
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_PixelCorrect: 1
-  m_RichText: 1
 --- !u!1 &1349090223
 GameObject:
   m_ObjectHideFlags: 0
