@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Ahead Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400002}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Ahead Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400004}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 61: {fileID: 6100000}
   - 95: {fileID: 9500000}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Hostile Touch
   m_TagString: Hostile
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.61391068, y: -2.94203687, z: 0}
+  m_LocalPosition: {x: -4.2747345, y: -6.42344809, z: 0}
   m_LocalScale: {x: .904440045, y: .904439986, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -136,8 +136,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1.95000005, y: 2.75}
-  m_Center: {x: -.200000003, y: -.400000006}
+  m_Size: {x: 1.14999998, y: 2.5}
+  m_Center: {x: -.0799999982, y: -.449999988}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2

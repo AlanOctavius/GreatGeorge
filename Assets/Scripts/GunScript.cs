@@ -20,7 +20,7 @@ public class GunScript : MonoBehaviour {
 	private Vector2 projectileVelocity; //determined at bullet instantiation
 	//DEBUG serialized for testing
 	[SerializeField] private float bulletSpeed = 20f;   // The speed the bullet will fire at.
-	[SerializeField] private float grenadeSpeed = 20f;   // The speed the bullet will fire at.
+	[SerializeField] private float grenadeSpeed = 20f;   // The speed the grenade will be thrown at.
 
 	private Vector3 cursorPos;
 	private Vector3 cursorInWorld;
@@ -49,6 +49,7 @@ public class GunScript : MonoBehaviour {
 		projectileVelocity = new Vector2(resultX, resultY).normalized * bulletSpeed;
 		//spawn the bullet. cache it to set velocity and damage
 		projectileInstance = Instantiate(bullet, transform.position, bulletRotation) as Rigidbody2D;
+		projectileInstance.gameObject.layer = 12;
 		projectileInstance.velocity = projectileVelocity; //set bullet velocity on rigidbody
 		//set bullet damage after getting script attached to same GO as rigidbody. is there a better way so don't need to getComponent here?
 		bs = projectileInstance.GetComponent<BulletScript>() as BulletScript;
@@ -72,11 +73,11 @@ public class GunScript : MonoBehaviour {
 	}
 
 	//DEBUG temp display for testing
-	void OnGUI() {
+	/*void OnGUI() {
 		GUI.Label(new Rect(0, 60, 200, 20), resultX.ToString("F1"));
 		GUI.Label(new Rect(0, 75, 200, 20), resultY.ToString("F1"));
 		GUI.Label(new Rect(0, 90, 200, 20), angle.ToString("F1"));
-	}
+	}*/
 
 	//TODO fix player facing so works with enemy facing direction
 	//helper sets velocity and rotation of bullet (and rotation of gun)

@@ -20,13 +20,20 @@ public abstract class Character : MonoBehaviour, IDamageable {
 	/// </summary>
 	/// <param name="damage">Damage to remove from health</param>
 	public virtual void TakeDamage (int damage)	{
+		StartCoroutine(FlashColor());
 		if (damage > 0) {
 			health -= damage;
-			print(this.ToString() + "'s health: " + health); //DEBUG output Character health when taking damage
 		}
 		if (health <= 0) {
 			Die();
 		}
+		print(transform.tag + " took " + damage + " damage. Health: " + Health.ToString());
+	}
+
+	public IEnumerator FlashColor() {
+		renderer.material.color = Color.red;
+		yield return new WaitForSeconds(0.2f);
+		renderer.material.color = Color.white;
 	}
 
 	/*I figured everyone can implement their own death. but I guess it may be better for this to be virtual. we can change it if need be.

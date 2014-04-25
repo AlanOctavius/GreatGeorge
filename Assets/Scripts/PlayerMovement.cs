@@ -36,39 +36,48 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Update() {
-		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-		int mask = 1 << LayerMask.NameToLayer("Ground");
-		//Debug.Log(mask);
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, mask);
+		if (!GameManagerScript.Paused) {
+			// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
+			int mask = 1 << LayerMask.NameToLayer("Ground");
+			//Debug.Log(mask);
+			grounded = Physics2D.Linecast(transform.position, groundCheck.position, mask);
 
-		cursorPos = Input.mousePosition;
-		cursorInWorld = Camera.main.ScreenToWorldPoint(cursorPos);
-		if (facingRight) {
-			if (cursorInWorld.x < transform.position.x) { Flip(); }
-		} else {
-			if (cursorInWorld.x > transform.position.x) { Flip(); }
+			cursorPos = Input.mousePosition;
+			cursorInWorld = Camera.main.ScreenToWorldPoint(cursorPos);
+			if (facingRight) {
+				if (cursorInWorld.x < transform.position.x) { Flip(); }
+			} else {
+				if (cursorInWorld.x > transform.position.x) { Flip(); }
+			}
+
+			if (Input.GetButton("Jump")) {
+				jumpPressed = true;
+				if (firstFrameJump) firstFrameJump = false;
+			} else {
+				jumpPressed = false;
+				jumping = false;
+			}
+
+			if (Input.GetButtonDown("Jump")) {
+				firstFrameJump = true;
+			}
+
+			if (grounded && jumpPressed) jumping = true;
+
+			// Cache the horizontal input.
+			horizontalInput = Input.GetAxis("Horizontal");
 		}
-
-		if (Input.GetButton("Jump")) {
-			jumpPressed = true;
-			if (firstFrameJump) firstFrameJump = false;
-		} else {
-			jumpPressed = false;
-			jumping = false;
-		}
-
-		if (Input.GetButtonDown("Jump")) {
-			firstFrameJump = true;
-		}
-
-		if (grounded && jumpPressed) jumping = true;
-
-		// Cache the horizontal input.
-		horizontalInput = Input.GetAxis("Horizontal");
 	}
 
 	void FixedUpdate () {		
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
+		/*
+		 * as is, careless adding force can push player against floating plaform; player can "float" in air by pressing self against edge of floating platform.
+		 * if use grounded check, this goes away, but this introducs two more problems.
+		 *  1) player loses horizontal control while in air (trajectory must be decided before jumping)
+		 *  2) there are times that the circle collider says player is on ground (player doesn't fall) but ground check / line cast does not. this causes player to be stuck in place at the edge of a platform.
+		 *  a different ground check mechanism could relieve second problem.
+		 */
 		if(horizontalInput * rigidbody2D.velocity.x < maxWalkSpeed) {
 			// ... add a force to the player.
 			rigidbody2D.AddForce(Vector2.right * horizontalInput * moveForce);
@@ -97,12 +106,12 @@ public class PlayerMovement : MonoBehaviour {
 		anim.SetBool("Jump", !grounded);
 	}
 
-	void OnGUI() {
+	/*void OnGUI() {
 		GUI.Label(new Rect(0, 0, 200, 20), "Velocity: " + rigidbody2D.velocity.ToString("F1"));
 		GUI.Label(new Rect(0, 15, 200, 20), "Magnitude: " + rigidbody2D.velocity.magnitude.ToString("F1"));
 		GUI.Label(new Rect(0, 30, 200, 20), "X: " + rigidbody2D.velocity.x.ToString("F1"));
 		GUI.Label(new Rect(0, 45, 200, 20), "Y: " + rigidbody2D.velocity.y.ToString("F1"));
-	}
+	}*/
 	
 	void Flip() {
 		// Switch the way the player is labelled as facing.

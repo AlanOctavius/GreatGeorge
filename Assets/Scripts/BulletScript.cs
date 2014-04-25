@@ -25,12 +25,12 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void Start () {
-		// Destroy the rocket after 2 seconds if it doesn't get destroyed before then.
 		if (damageRadius <=0) isGrenade = false;
 		if (isGrenade) {
 			Invoke("Explode", fuseTime);
 			gameObject.layer = 10;
 		} else {
+			// Destroy the bullet after 2 seconds if it doesn't get destroyed before then.
 			Destroy(gameObject, 2);
 		}
 	}
@@ -43,7 +43,9 @@ public class BulletScript : MonoBehaviour {
 				//Destroy(gameObject); //destroy bullet
 			}
 			//Destroy when hit ground or enemies
-			if (col.tag == "ground" || (ShooterTag == "Hostile" ? col.tag == "Player" : false) || (ShooterTag == "Player" ? col.tag == "Hostile" : false)) Destroy(gameObject); //destroy bullet
+			if (col.tag == "ground" || (ShooterTag == "Hostile" ? col.tag == "Player" : false) || (ShooterTag == "Player" ? col.tag == "Hostile" : false)) {
+				Destroy(gameObject); //destroy bullet
+			}
 		}
 	}
 

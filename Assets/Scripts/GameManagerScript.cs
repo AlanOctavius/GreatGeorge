@@ -21,6 +21,7 @@ public class GameManagerScript : MonoBehaviour {
 		pauseScript = gameObject.GetComponent<PauseScript>() as PauseScript;
 		paused = false;
 		gameOver = false;
+		score = 0;
 	}
 
 	void Update() {

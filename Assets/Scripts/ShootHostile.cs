@@ -37,7 +37,7 @@ public class ShootHostile : TouchEnemy {
 		bs = bulletInstance.GetComponent<BulletScript>() as BulletScript;
 		bs.Damage = bulletDamage;
 		bs.ShooterTag = tag; //when gun is child of character, need to use parent's tag
-		bs.rigidbody2D.gravityScale = bulletGravityScale;
+		//bs.rigidbody2D.gravityScale = bulletGravityScale;
 	}
 
 }

@@ -42,37 +42,38 @@ public class TouchEnemy : Character {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!GameManagerScript.Paused) {
+			if (changingDirection) {
+				aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
+				aheadContactCheck.localPosition =  Vector3.Scale( invertYVec , aheadContactCheck.localPosition );
+				movingDirection *= -1;
+				changingDirection = false;
+			}
+		
+			int mask = 1 << LayerMask.NameToLayer("Ground");
+			// if something is in the way or there is no floor set the change direction flag
+			aheadContact = Physics2D.Linecast (transform.position, aheadContactCheck.position,mask);
+			grounded = Physics2D.Linecast (transform.position, groundCheck.position,mask);
+			// Ahead ground fails if there is nothing ahead
+			// Place back in so hostile do not walk off ledge
+			//aheadGround = !Physics2D.Linecast (transform.position, aheadGroundCheck.position,mask);
 
-		if (changingDirection) {
-			aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
-			aheadContactCheck.localPosition =  Vector3.Scale( invertYVec , aheadContactCheck.localPosition );
-			movingDirection *= -1;
-			changingDirection = false;
+			if (aheadGround) {
+				debugAheadFloor = true;
+					}
+
+			if ((aheadGround || aheadContact)&&grounded) {
+				changingDirection = true;
+					}
+
+			// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
+			if(Mathf.Abs(movingDirection * rigidbody2D.velocity.x )< maxSpeed && grounded) {
+				// ... add a force to the player.
+				rigidbody2D.AddForce(Vector2.right * movingDirection * moveForce);
+			}
+
+			anim.SetFloat("speed", Mathf.Abs(rigidbody2D.velocity.x));
 		}
-	
-		int mask = 1 << LayerMask.NameToLayer("Ground");
-		// if something is in the way or there is no floor set the change direction flag
-		aheadContact = Physics2D.Linecast (transform.position, aheadContactCheck.position,mask);
-		grounded = Physics2D.Linecast (transform.position, groundCheck.position,mask);
-		// Ahead ground fails if there is nothing ahead
-		// Place back in so hostile do not walk off ledge
-		//aheadGround = !Physics2D.Linecast (transform.position, aheadGroundCheck.position,mask);
-
-		if (aheadGround) {
-			debugAheadFloor = true;
-				}
-
-		if ((aheadGround || aheadContact)&&grounded) {
-			changingDirection = true;
-				}
-
-		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-		if(Mathf.Abs(movingDirection * rigidbody2D.velocity.x )< maxSpeed && grounded) {
-			// ... add a force to the player.
-			rigidbody2D.AddForce(Vector2.right * movingDirection * moveForce);
-		}
-
-		anim.SetFloat("speed", Mathf.Abs(rigidbody2D.velocity.x));
 	}
 
 
@@ -81,13 +82,13 @@ public class TouchEnemy : Character {
 		if (collision.gameObject.tag == "Player") {
 			PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
 			player.TakeDamage(1);
-			Debug.Log("playerhit");
+			//Debug.Log("playerhit");
 			changingDirection = true;
-			}
-		if (collision.gameObject.tag == "Hostile"){
-			changingDirection = true;
-			}
 		}
+		else if (collision.gameObject.tag == "Hostile"){
+			changingDirection = true;
+		}
+	}
 
 	protected override void Die(){
 		GameManagerScript.IncreaseScore (pointValue);
