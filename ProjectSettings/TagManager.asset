@@ -16,11 +16,11 @@ TagManager:
   Builtin Layer 6: 
   Builtin Layer 7: 
   User Layer 8: Ground
-  User Layer 9: Characters
+  User Layer 9: Player
   User Layer 10: Grenades
   User Layer 11: Touch Enemy
   User Layer 12: Bullet
-  User Layer 13: 
+  User Layer 13: Shoot Enemy
   User Layer 14: 
   User Layer 15: 
   User Layer 16: 
@@ -43,4 +43,16 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
+    locked: 0
+  - name: Level
+    userID: 3
+    uniqueID: 2968976563
+    locked: 0
+  - name: Characters
+    userID: 1
+    uniqueID: 1496234889
+    locked: 0
+  - name: Bullets
+    userID: 2
+    uniqueID: 2686458827
     locked: 0

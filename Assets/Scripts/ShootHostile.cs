@@ -17,11 +17,16 @@ public class ShootHostile : TouchEnemy {
 	private int bulletDamage = 1; //different guns can cause differnt damage
 
 	private float bulletSpeed = 20f;   // The speed the bullet will fire at.
-	
+
+	private Animator animator;	
 
 	protected override void ExtraStart () {
+		aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
+		aheadContactCheck.localPosition =  Vector3.Scale( invertYVec , aheadContactCheck.localPosition );
 		InvokeRepeating("Shoot", shootDelay, shootTime);
 		pointValue = 15;
+
+		animator = GetComponent<Animator>() as Animator;
 	}
 
 
@@ -38,6 +43,7 @@ public class ShootHostile : TouchEnemy {
 		bs.Damage = bulletDamage;
 		bs.ShooterTag = tag; //when gun is child of character, need to use parent's tag
 		//bs.rigidbody2D.gravityScale = bulletGravityScale;
+		animator.SetTrigger("Attacking");
 	}
 
 }

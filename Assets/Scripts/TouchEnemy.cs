@@ -8,9 +8,9 @@ public class TouchEnemy : Character {
 	public bool aheadContact = false;
 	public bool aheadGround = false;
 	public bool grounded = false;			// Whether or not the player is grounded.
-	private Transform aheadContactCheck;
-	private Transform aheadGroundCheck;
-	private Transform groundCheck;			// A position marking where to check if the player is grounded.
+	protected Transform aheadContactCheck;
+	protected Transform aheadGroundCheck;
+	protected Transform groundCheck;			// A position marking where to check if the player is grounded.
 
 	protected int pointValue = 10;
 
@@ -25,9 +25,15 @@ public class TouchEnemy : Character {
 
 
 	//Useful transform
-	private Vector3 invertYVec = new Vector3(-1,1,1);
+	protected Vector3 invertYVec = new Vector3(-1,1,1);
 
 	private Animator anim;
+
+	private float attackCooldown = 1.0f;
+	private float lastAttack;
+
+	private float turnAroundCooldown = 0.1f;
+	private float lastTurnAround;
 
 	// Use this for initialization
 	void Start () {
@@ -44,8 +50,11 @@ public class TouchEnemy : Character {
 	void Update () {
 		if (!GameManagerScript.Paused) {
 			if (changingDirection) {
-				aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
-				aheadContactCheck.localPosition =  Vector3.Scale( invertYVec , aheadContactCheck.localPosition );
+				//aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
+				//aheadContactCheck.localPosition =  Vector3.Scale( invertYVec , aheadContactCheck.localPosition );
+				Vector3 myScale = transform.localScale;
+				myScale.x *= -1;
+				transform.localScale = myScale;
 				movingDirection *= -1;
 				changingDirection = false;
 			}
@@ -80,12 +89,19 @@ public class TouchEnemy : Character {
 	void OnCollisionEnter2D(Collision2D collision){
 
 		if (collision.gameObject.tag == "Player") {
+			//check if on CoolDown
+			if (Time.time - lastAttack < attackCooldown) return;
+			lastAttack = Time.time;
 			PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
 			player.TakeDamage(1);
 			//Debug.Log("playerhit");
+			anim.SetTrigger("Attacking");
+			print(transform.position.ToString());
 			changingDirection = true;
 		}
 		else if (collision.gameObject.tag == "Hostile"){
+			if (Time.time - lastTurnAround < turnAroundCooldown) return;
+			lastTurnAround = Time.time;
 			changingDirection = true;
 		}
 	}
