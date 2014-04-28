@@ -3,8 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	//DEBUG serialized for testing
-	[SerializeField, Range(25,100)]
+	[Range(25,100)]
 	private float menuSizePercent = 80f;
 
 	private float scrnW;

@@ -35,9 +35,7 @@ public class PlayerHealth : Character {
 
 	private void CheckHealthBuff(BuffPickup.BuffTypes type, int amount) {
 		if (type == BuffPickup.BuffTypes.HEALTH) {
-			print("Player health: " + Health); //DEBUG print health before and after pickup buff
 			health += amount;
-			print("Player health: " + Health);
 		}
 	}
 }

@@ -18,8 +18,7 @@ public class PauseScript : MonoBehaviour {
 		/// <summary>The time limit expired</summary>
 		TimeLimit };
 
-	//DEBUG serialized for testing
-	[SerializeField, Range(25,100)]
+	[Range(25,100)]
 	private float menuSizePercent = 80f;
 
 	/// <summary>
@@ -67,12 +66,6 @@ public class PauseScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		//TODO these 4 are only here to test menu size while game is running. should remove them from here (and let them stay in Start) before release. not efficient to calculate them every frame in final release
-		offsetFromLeft = (scrnW * ((100f - menuSizePercent) / 100f) / 2);
-		offsetFromTop = (scrnH * ((100f - menuSizePercent) / 100f) / 2);
-		height = scrnH * (menuSizePercent / 100f);
-		width = scrnW * (menuSizePercent / 100f);
-
 		centeredLabel = new GUIStyle(GUI.skin.label);
 		centeredLabel.alignment = TextAnchor.UpperCenter;
 

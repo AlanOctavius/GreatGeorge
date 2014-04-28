@@ -51,7 +51,7 @@ public class BulletScript : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (isGrenade) {
-			rigidbody2D.drag = 0.25f;
+			rigidbody2D.drag = 0.5f;
 		}
 	}
 

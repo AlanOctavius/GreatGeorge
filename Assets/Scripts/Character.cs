@@ -27,7 +27,6 @@ public abstract class Character : MonoBehaviour, IDamageable {
 		if (health <= 0) {
 			Die();
 		}
-		print(transform.tag + " took " + damage + " damage. Health: " + Health.ToString());
 	}
 
 	public IEnumerator FlashColor() {

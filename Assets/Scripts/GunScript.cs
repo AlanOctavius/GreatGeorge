@@ -18,7 +18,7 @@ public class GunScript : MonoBehaviour {
 	private Rigidbody2D projectileInstance; //member so not creating a new var every shot
 	private Quaternion bulletRotation; //current bullet is round so its rotation doesn't matter. but if that changes, we do have to change its orientation as it's done below
 	private Vector2 projectileVelocity; //determined at bullet instantiation
-	//DEBUG serialized for testing
+
 	[SerializeField] private float bulletSpeed = 20f;   // The speed the bullet will fire at.
 	[SerializeField] private float grenadeSpeed = 20f;   // The speed the grenade will be thrown at.
 
@@ -72,14 +72,6 @@ public class GunScript : MonoBehaviour {
 		bs.ShooterTag = transform.parent.tag; //when gun is child of character, need to use parent's tag
 	}
 
-	//DEBUG temp display for testing
-	/*void OnGUI() {
-		GUI.Label(new Rect(0, 60, 200, 20), resultX.ToString("F1"));
-		GUI.Label(new Rect(0, 75, 200, 20), resultY.ToString("F1"));
-		GUI.Label(new Rect(0, 90, 200, 20), angle.ToString("F1"));
-	}*/
-
-	//TODO fix player facing so works with enemy facing direction
 	//helper sets velocity and rotation of bullet (and rotation of gun)
 	void Update() {
 		//get the difference between my position and the cursor's

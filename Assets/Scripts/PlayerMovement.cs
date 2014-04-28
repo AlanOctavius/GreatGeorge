@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour {
 	private bool jumpPressed = false;
 	private bool jumping = false;
 
-	//DEBUG serialzed for testing
 	[SerializeField] private float moveForce = 365f;			// Amount of force added to move the player left and right.
 	[SerializeField] private float maxWalkSpeed = 5f;				// The fastest the player can travel in the x axis.
 	[SerializeField] private float jumpForce = 50f;			// Amount of force added when the player jumps.

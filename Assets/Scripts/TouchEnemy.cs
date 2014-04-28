@@ -23,6 +23,7 @@ public class TouchEnemy : Character {
 	public int movingDirection = 1;	// Bool to show direction
 	public bool changingDirection = false; //bool to show if direction changed last frame ie hit a wall
 
+	public int startHealth = 1;
 
 	//Useful transform
 	protected Vector3 invertYVec = new Vector3(-1,1,1);
@@ -37,13 +38,18 @@ public class TouchEnemy : Character {
 
 	// Use this for initialization
 	void Start () {
-
+		health = startHealth;
 		groundCheck = transform.FindChild ("Ground Check");
 		aheadContactCheck = transform.FindChild ("Ahead Check");
 		aheadGroundCheck = transform.FindChild ("Ahead Ground Check");
 		ExtraStart ();
 
 		anim = GetComponent<Animator>() as Animator;
+		if (movingDirection == -1) {
+			Vector3 myScale = transform.localScale;
+			myScale.x *= -1;
+			transform.localScale = myScale;
+		}
 	}
 	
 	// Update is called once per frame
@@ -76,7 +82,7 @@ public class TouchEnemy : Character {
 					}
 
 			// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-			if(Mathf.Abs(movingDirection * rigidbody2D.velocity.x )< maxSpeed && grounded) {
+			if(Mathf.Abs(rigidbody2D.velocity.x )< maxSpeed) {
 				// ... add a force to the player.
 				rigidbody2D.AddForce(Vector2.right * movingDirection * moveForce);
 			}

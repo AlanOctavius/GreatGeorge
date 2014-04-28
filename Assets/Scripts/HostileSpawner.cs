@@ -6,6 +6,7 @@ public class HostileSpawner : MonoBehaviour {
 	public GameObject hostile;
 	public float spawnTime = 5f;		// The amount of time between each spawn.
 	public float spawnDelay = 3f;		// The amount of time before spawning starts.
+	public int spawnDirection = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +19,9 @@ public class HostileSpawner : MonoBehaviour {
 	{
 		// Instantiate a hostile.
 
-		Instantiate(hostile, transform.position, transform.rotation);
-		
-	
+		GameObject enemy = Instantiate(hostile, transform.position, transform.rotation) as GameObject;
+
+		TouchEnemy script = enemy.GetComponent<TouchEnemy>() as TouchEnemy;
+		script.movingDirection = spawnDirection;	
 	}
 }
