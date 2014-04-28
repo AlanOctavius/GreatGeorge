@@ -49,7 +49,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
@@ -58,7 +58,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 300
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
@@ -67,7 +67,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 600
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
@@ -76,7 +76,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 900
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
@@ -85,7 +85,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1200
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
@@ -93,7 +93,7 @@ TextureImporter:
     - name: IdleAimMiddle_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1500
         y: 1050
         width: 300
         height: 350
@@ -102,8 +102,8 @@ TextureImporter:
     - name: IdleAimMiddle_6
       rect:
         serializedVersion: 2
-        x: 300
-        y: 1050
+        x: 0
+        y: 700
         width: 300
         height: 350
       alignment: 0
@@ -111,8 +111,8 @@ TextureImporter:
     - name: IdleAimMiddle_7
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1050
+        x: 300
+        y: 700
         width: 300
         height: 350
       alignment: 0
@@ -120,8 +120,8 @@ TextureImporter:
     - name: IdleAimMiddle_8
       rect:
         serializedVersion: 2
-        x: 900
-        y: 1050
+        x: 600
+        y: 700
         width: 300
         height: 350
       alignment: 0
@@ -129,8 +129,8 @@ TextureImporter:
     - name: IdleAimMiddle_9
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 1050
+        x: 900
+        y: 700
         width: 300
         height: 350
       alignment: 0
@@ -138,7 +138,7 @@ TextureImporter:
     - name: IdleAimMiddle_10
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1200
         y: 700
         width: 300
         height: 350
@@ -147,7 +147,7 @@ TextureImporter:
     - name: IdleAimMiddle_11
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1500
         y: 700
         width: 300
         height: 350
@@ -156,8 +156,8 @@ TextureImporter:
     - name: IdleAimMiddle_12
       rect:
         serializedVersion: 2
-        x: 600
-        y: 700
+        x: 0
+        y: 350
         width: 300
         height: 350
       alignment: 0
@@ -165,8 +165,8 @@ TextureImporter:
     - name: IdleAimMiddle_13
       rect:
         serializedVersion: 2
-        x: 900
-        y: 700
+        x: 300
+        y: 350
         width: 300
         height: 350
       alignment: 0
@@ -174,8 +174,8 @@ TextureImporter:
     - name: IdleAimMiddle_14
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 700
+        x: 600
+        y: 350
         width: 300
         height: 350
       alignment: 0
@@ -183,7 +183,7 @@ TextureImporter:
     - name: IdleAimMiddle_15
       rect:
         serializedVersion: 2
-        x: 0
+        x: 900
         y: 350
         width: 300
         height: 350
@@ -192,7 +192,7 @@ TextureImporter:
     - name: IdleAimMiddle_16
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1200
         y: 350
         width: 300
         height: 350
@@ -201,7 +201,7 @@ TextureImporter:
     - name: IdleAimMiddle_17
       rect:
         serializedVersion: 2
-        x: 600
+        x: 1500
         y: 350
         width: 300
         height: 350
@@ -210,31 +210,13 @@ TextureImporter:
     - name: IdleAimMiddle_18
       rect:
         serializedVersion: 2
-        x: 900
-        y: 350
-        width: 300
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimMiddle_19
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 350
-        width: 300
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimMiddle_20
-      rect:
-        serializedVersion: 2
         x: 0
         y: 0
         width: 300
         height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: IdleAimMiddle_21
+    - name: IdleAimMiddle_19
       rect:
         serializedVersion: 2
         x: 300
@@ -243,7 +225,7 @@ TextureImporter:
         height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: IdleAimMiddle_22
+    - name: IdleAimMiddle_20
       rect:
         serializedVersion: 2
         x: 600
@@ -252,10 +234,28 @@ TextureImporter:
         height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: IdleAimMiddle_23
+    - name: IdleAimMiddle_21
       rect:
         serializedVersion: 2
         x: 900
+        y: 0
+        width: 300
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: IdleAimMiddle_22
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 300
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: IdleAimMiddle_23
+      rect:
+        serializedVersion: 2
+        x: 1500
         y: 0
         width: 300
         height: 350

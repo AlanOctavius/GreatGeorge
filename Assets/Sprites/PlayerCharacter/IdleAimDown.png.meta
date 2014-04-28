@@ -49,165 +49,138 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_1
       rect:
         serializedVersion: 2
         x: 300
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_2
       rect:
         serializedVersion: 2
         x: 600
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_3
       rect:
         serializedVersion: 2
         x: 900
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_4
       rect:
         serializedVersion: 2
         x: 1200
-        y: 1400
+        y: 1050
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1500
         y: 1050
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_6
       rect:
         serializedVersion: 2
-        x: 300
-        y: 1050
+        x: 0
+        y: 700
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_7
       rect:
         serializedVersion: 2
-        x: 600
-        y: 1050
+        x: 300
+        y: 700
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_8
       rect:
         serializedVersion: 2
-        x: 900
-        y: 1050
+        x: 600
+        y: 700
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_9
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 1050
+        x: 900
+        y: 700
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_10
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1200
         y: 700
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_11
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1500
         y: 700
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_12
       rect:
         serializedVersion: 2
-        x: 600
-        y: 700
+        x: 0
+        y: 350
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_13
       rect:
         serializedVersion: 2
-        x: 900
-        y: 700
+        x: 300
+        y: 350
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
     - name: IdleAimDown_14
       rect:
         serializedVersion: 2
-        x: 1200
-        y: 700
-        width: 300
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 350
-        width: 300
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_16
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 350
-        width: 300
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_17
-      rect:
-        serializedVersion: 2
         x: 600
         y: 350
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_18
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_15
       rect:
         serializedVersion: 2
         x: 900
@@ -215,8 +188,8 @@ TextureImporter:
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_19
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_16
       rect:
         serializedVersion: 2
         x: 1200
@@ -224,8 +197,17 @@ TextureImporter:
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_20
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_17
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 350
+        width: 300
+        height: 350
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_18
       rect:
         serializedVersion: 2
         x: 0
@@ -233,8 +215,8 @@ TextureImporter:
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_21
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_19
       rect:
         serializedVersion: 2
         x: 300
@@ -242,8 +224,8 @@ TextureImporter:
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: IdleAimDown_22
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_20
       rect:
         serializedVersion: 2
         x: 600
@@ -251,6 +233,33 @@ TextureImporter:
         width: 300
         height: 350
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_21
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 300
+        height: 350
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_22
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 300
+        height: 350
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: IdleAimDown_23
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 348
+        width: 4
+        height: 2
+      alignment: 0
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 
