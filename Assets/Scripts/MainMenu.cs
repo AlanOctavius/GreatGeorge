@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour {
 	[SerializeField] private float buttonSpacing = 20f;
 
 	private GUIStyle centeredLabel;
+	public GUISkin mySkin;
 
 	void Start() {
 		scrnW = Screen.width;
@@ -35,13 +36,14 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void OnGUI() {
+		GUI.skin = mySkin;
 		centeredLabel = new GUIStyle(GUI.skin.label);
 		centeredLabel.alignment = TextAnchor.UpperCenter;
 
 		GUI.BeginGroup(new Rect(offsetFromLeft, offsetFromTop, width, height));
-		GUI.Box(new Rect(0,0, width, height), "");
+		//GUI.Box(new Rect(0,0, width, height), "");
 
-		GUI.Label(new Rect(width / 2 - 50, 50, 100, 25), "Great George", centeredLabel);		
+		//GUI.Label(new Rect(width / 2 - 50, 50, 100, 25), "Great George", centeredLabel);		
 
 		if (GUI.Button(new Rect(width / 2 - buttonWidth / 2, buttonHeight * 2, buttonWidth, buttonHeight), "Play")) {
 			Application.LoadLevel(1);
@@ -51,11 +53,11 @@ public class MainMenu : MonoBehaviour {
 			Application.Quit();
 		}
 
-		GUI.Label(new Rect(width / 2 - 60, 390, 120, 25), "Art", centeredLabel);
-		GUI.Label(new Rect(width / 2 - 60, 410, 120, 25), "Alex Sherman", centeredLabel);
-		GUI.Label(new Rect(width / 2 - 60, 450, 120, 25), "Programming", centeredLabel);
-		GUI.Label(new Rect(width / 2 - 60, 470, 120, 25), "Alan Octavius", centeredLabel);
-		GUI.Label(new Rect(width / 2 - 60, 490, 120, 25), "David Cottingham", centeredLabel);
+		//GUI.Label(new Rect(width / 2 - 60, 390, 120, 25), "Art", centeredLabel);
+		//GUI.Label(new Rect(width / 2 - 60, 410, 120, 25), "Alex Sherman", centeredLabel);
+		//GUI.Label(new Rect(width / 2 - 60, 450, 120, 25), "Programming", centeredLabel);
+		//GUI.Label(new Rect(width / 2 - 60, 470, 120, 25), "Alan Octavius", centeredLabel);
+		//GUI.Label(new Rect(width / 2 - 60, 490, 120, 25), "David Cottingham", centeredLabel);
 
 		GUI.EndGroup();
 	}
