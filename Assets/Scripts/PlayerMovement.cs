@@ -94,7 +94,6 @@ public class PlayerMovement : MonoBehaviour {
 			if (rigidbody2D.velocity.y <= maxJumpSpeed) {
 				if (firstFrameJump) {
 					rigidbody2D.AddForce(new Vector2(0f, initialJumpForce));
-					print("initial frame");
 				} else {
 					rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 				}

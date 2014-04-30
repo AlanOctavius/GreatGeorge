@@ -96,6 +96,5 @@ public class GameManagerScript : MonoBehaviour {
 	/// <param name="score">How much score to give the player</param>
 	public static void IncreaseScore(int scoreInc) {
 		score += scoreInc;
-
 	}
 }

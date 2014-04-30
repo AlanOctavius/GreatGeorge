@@ -59,6 +59,8 @@ public class GunScript : MonoBehaviour {
 		if (transform.parent.tag == "Player") {
 			anim.SetTrigger("Shooting");
 		}
+
+		audio.Play();
 	}
 
 	public void ShootSecondary() {

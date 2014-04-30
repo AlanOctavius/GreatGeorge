@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6fb9d70223f01ed4e9c3ff168793051b
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - healthSound: {instanceID: 0}
+  - ammoSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

@@ -12,6 +12,9 @@ public class BulletScript : MonoBehaviour {
 	[SerializeField] private float damageRadius = 0;
 	[SerializeField] private float fuseTime = 0;
 
+	[SerializeField] private GameObject grenadeExplosion;
+	private GameObject explosion;
+
 	/// <summary>
 	/// Gets or sets the <paramref name="damage"/>the bullet deals. Only sets if <paramref name="damage"/> is not negative. Currently allows 0 damage in case we use pickups that debuff player to doing no damage.
 	/// </summary>
@@ -56,6 +59,7 @@ public class BulletScript : MonoBehaviour {
 	}
 
 	void Explode() {
+		explosion = Instantiate(grenadeExplosion, transform.position, Quaternion.identity) as GameObject;
 		Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, damageRadius);
 		foreach (Collider2D col in colls) {
 			IDamageable script = col.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
@@ -63,6 +67,12 @@ public class BulletScript : MonoBehaviour {
 				script.TakeDamage(damage);
 			}
 		}
+		Invoke("CleanupExplosion", 0.7f);
+		renderer.enabled = false;
+	}
+
+	void CleanupExplosion() {
+		Destroy(explosion);
 		Destroy(gameObject); //destroy grenade
 	}
 }

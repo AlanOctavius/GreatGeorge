@@ -29,7 +29,7 @@ public class BuffPickup : MonoBehaviour {
 	private BuffTypes type;
 	[SerializeField]
 	private int amount; //amount the buff increases the stat by
-	
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			if (BuffPlayer != null) {

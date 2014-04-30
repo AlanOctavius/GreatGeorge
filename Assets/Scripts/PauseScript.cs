@@ -47,10 +47,12 @@ public class PauseScript : MonoBehaviour {
 
 	void OnEnable() {
 		Time.timeScale = 0.0f;
+		audio.volume = 0.1f;
 	}
 
 	void OnDisable() {
 		Time.timeScale = 1.0f;
+		audio.volume = 0.4f;
 	}
 
 	void Start() {

@@ -21,7 +21,7 @@ public class ShootHostile : TouchEnemy {
 	private Animator animator;	
 
 	protected override void ExtraStart () {
-		aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
+		//aheadGroundCheck.localPosition =  Vector3.Scale( invertYVec , aheadGroundCheck.localPosition );
 		aheadContactCheck.localPosition =  Vector3.Scale( invertYVec , aheadContactCheck.localPosition );
 		InvokeRepeating("Shoot", shootDelay, shootTime);
 		pointValue = 15;
@@ -44,6 +44,8 @@ public class ShootHostile : TouchEnemy {
 		bs.ShooterTag = tag; //when gun is child of character, need to use parent's tag
 		//bs.rigidbody2D.gravityScale = bulletGravityScale;
 		animator.SetTrigger("Attacking");
+
+		audio.Play();
 	}
 
 }
